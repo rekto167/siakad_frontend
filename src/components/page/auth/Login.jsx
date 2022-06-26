@@ -26,9 +26,11 @@ const Login = () => {
           </Link>
         </div>
         <div className="mt-2 mx-auto">
-          <button className="bg-cyan-400 text-center py-3 px-5 text-white hover:bg-cyan-600 rounded">
-            Login
-          </button>
+          <input
+            type="submit"
+            className="bg-cyan-400 text-center py-3 px-5 text-white hover:bg-cyan-600 rounded"
+            value="Login"
+          />
         </div>
       </div>
     </div>
