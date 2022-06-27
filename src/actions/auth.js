@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  LOGIN_SUCCCESS,
+  LOGIN_SUCCESS,
   LOGIN_FAIL,
   AUTH_ERROR,
   USER_LOADED,
@@ -42,8 +42,8 @@ export const login =
     try {
       const res = await axios.post("/api/login", body, config);
       dispatch({
-        type: LOGIN_SUCCCESS,
-        payload: res.data,
+        type: LOGIN_SUCCESS,
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({

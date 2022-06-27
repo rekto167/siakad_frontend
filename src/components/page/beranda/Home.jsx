@@ -1,9 +1,21 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Navigate } from "react-router-dom";
 
-const Home = () => {
-  return (
-    <h1>Home</h1>
-  )
-}
+const Home = ({ isAuthenticated }) => {
+  if (!isAuthenticated) {
+    <Navigate to="/login" />;
+  }
+  return <h1>Home</h1>;
+};
 
-export default Home
+Home.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, {})(Home);
