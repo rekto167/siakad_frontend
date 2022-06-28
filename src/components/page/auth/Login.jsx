@@ -17,7 +17,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login({ username, password });
+    login(formData);
   };
 
   if (isAuthenticated) {
@@ -30,7 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
         <div className="container rounded bg-white p-10 drop-shadow">
           <h1 className="text-center mb-5">Login</h1>
           <div className="flex flex-col">
-            <label for="username">Username</label>
+            <label>Username</label>
             <input
               type="text"
               className="rounded p-2 drop-shadow-sm border-2 border-solid focus:outline-none focus:border-cyan-500"
@@ -39,7 +39,7 @@ const Login = ({ login, isAuthenticated }) => {
             />
           </div>
           <div className="flex flex-col">
-            <label for="password">Password</label>
+            <label>Password</label>
             <input
               type="password"
               name="password"

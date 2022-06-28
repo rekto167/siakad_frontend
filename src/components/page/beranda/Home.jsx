@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 
 const Home = ({ isAuthenticated }) => {
   if (!isAuthenticated) {
-    <Navigate to="/login" />;
+    return <Navigate to="/login" />;
   }
   return <h1>Home</h1>;
 };
@@ -18,4 +18,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps)(Home);

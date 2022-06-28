@@ -16,10 +16,10 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/api/auth");
+    const res = await axios.get("/api/user");
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     dispatch({
@@ -28,29 +28,23 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const login =
-  ({ username, password }) =>
-  async (dispatch) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const body = JSON.stringify({ username, password });
-
-    try {
-      const res = await axios.post("/api/login", body, config);
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data.data,
-      });
-    } catch (err) {
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-    }
+export const login = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Tyep": "application/json",
+    },
   };
+  console.log(formData)
+  try{
+    const res = await axios.post(`/api/login`, formData, config)
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data.data
+    })
+  }catch(err){
+    dispatch({type:LOGIN_FAIL})
+  }
+};
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
