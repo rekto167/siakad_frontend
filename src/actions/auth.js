@@ -34,15 +34,36 @@ export const login = (formData) => async (dispatch) => {
       "Content-Tyep": "application/json",
     },
   };
-  console.log(formData)
-  try{
-    const res = await axios.post(`/api/login`, formData, config)
+  try {
+    const res = await axios.post(`/api/login`, formData, config);
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data.data
-    })
-  }catch(err){
-    dispatch({type:LOGIN_FAIL})
+      payload: res.data.data,
+    });
+    dispatch(loadUser());
+  } catch (err) {
+    dispatch({ type: LOGIN_FAIL });
+  }
+};
+
+export const register = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.post(`/api/register`, formData, config);
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data.data,
+    });
+    dispatch(loadUser());
+  } catch (err) {
+    dispatch({
+      type: REGISTER_FAIL,
+    });
   }
 };
 
