@@ -28,20 +28,27 @@ const Navbar = ({ logout, isAuthenticated }) => {
         </ul>
       </div>
       <div className="flex items-center">
-        <a href="#" className="mr-3">
-          Username (admin)
-        </a>
         {isAuthenticated ? (
-          <button className="bg-cyan-700 hover:bg-cyan-400 focus:bg-cyan-400 py-2 px-4 rounded text-white">
-            Login
-          </button>
+          <div>
+            <a href="#" className="mr-3">
+              Username (admin)
+            </a>
+            <button
+              className="bg-cyan-700 hover:bg-cyan-400 focus:bg-cyan-400 py-2 px-4 rounded text-white"
+              onClick={logout}
+            >
+              Logout
+            </button>
+          </div>
         ) : (
-          <button
-            className="bg-cyan-700 hover:bg-cyan-400 focus:bg-cyan-400 py-2 px-4 rounded text-white"
-            onClick={logout}
-          >
-            Logout
-          </button>
+          <div>
+            <Link
+              to="/login"
+              className="bg-cyan-700 hover:bg-cyan-400 focus:bg-cyan-400 py-2 px-4 rounded text-white"
+            >
+              Login
+            </Link>
+          </div>
         )}
       </div>
     </nav>
