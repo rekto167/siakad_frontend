@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import PropTypes from "prop-types";
 
-const Navbar = ({ logout, isAuthenticated }) => {
+const Navbar = ({ logout, isAuthenticated, user }) => {
   return (
     <nav className="py-2 bg-cyan-500 flex items-center justify-between px-2 text-white">
       <div className="flex">
@@ -31,7 +31,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
         {isAuthenticated ? (
           <div>
             <a href="#" className="mr-3">
-              Username (admin)
+              {user.name}
             </a>
             <button
               className="bg-cyan-700 hover:bg-cyan-400 focus:bg-cyan-400 py-2 px-4 rounded text-white"
@@ -58,10 +58,12 @@ const Navbar = ({ logout, isAuthenticated }) => {
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

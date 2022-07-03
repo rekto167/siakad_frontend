@@ -18,6 +18,8 @@ import { loadUser } from "./actions/auth";
 import Ruang from "./components/page/ruang";
 import BuatKelas from "./components/page/ruang/BuatKelas";
 import BasicAlert from "./components/layouts/BasicAlert";
+import Mapel from "./components/page/mapel";
+import TambahMapel from "./components/page/mapel/TambahMapel";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -45,6 +47,11 @@ const App = () => {
             <Route
               path="/kelas/buat"
               element={<PrivateRoute component={BuatKelas} />}
+            />
+            <Route path="/mapel" element={<PrivateRoute component={Mapel} />} />
+            <Route
+              path="/mapel/tambah"
+              element={<PrivateRoute component={TambahMapel} />}
             />
           </Routes>
         </Fragment>

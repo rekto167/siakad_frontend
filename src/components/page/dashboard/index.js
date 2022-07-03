@@ -37,7 +37,7 @@ const Dashboard = () => {
           <div className="p-5">
             <h5 className="text-center font-semibold text-lg">Kelas</h5>
             <div className="flex flex-row items-center justify-around mt-3">
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center hover:text-cyan-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -52,7 +52,10 @@ const Dashboard = () => {
                 </svg>
                 <h6>Jadwal</h6>
               </div>
-              <div className="flex flex-col items-center">
+              <Link
+                to="/mapel"
+                className="flex flex-col items-center hover:text-cyan-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -62,7 +65,7 @@ const Dashboard = () => {
                   <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                 </svg>
                 <h6>Mapel</h6>
-              </div>
+              </Link>
               <Link
                 to="/kelas"
                 className="flex flex-col items-center hover:text-cyan-400"

@@ -12,3 +12,6 @@ export const REMOVE_ALERT = "REMOVE_ALERT";
 // classroom
 export const CREATE_CLASS_SUCCESS = "CREATE_CLASS_SUCCESS";
 export const CREATE_CLASS_FAIL = "CREATE_CLASS_FAIL";
+// mapel
+export const ADD_MAPEL = "ADD_MAPEL";
+export const ADD_MAPEL_FAIL = "ADD_MAPEL_FAIL";
