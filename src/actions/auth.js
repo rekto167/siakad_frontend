@@ -7,8 +7,10 @@ import {
   AUTH_ERROR,
   USER_LOADED,
   LOGOUT,
+  SET_ALERT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+import { setAlert } from "./alert";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -40,6 +42,7 @@ export const login = (formData) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data.data,
     });
+    dispatch(setAlert(res.data.meta.message, res.data.meta.status));
     dispatch(loadUser());
   } catch (err) {
     dispatch({ type: LOGIN_FAIL });

@@ -17,6 +17,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import Ruang from "./components/page/ruang";
 import BuatKelas from "./components/page/ruang/BuatKelas";
+import BasicAlert from "./components/layouts/BasicAlert";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -31,6 +32,7 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
+          <BasicAlert />
           <Routes>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
