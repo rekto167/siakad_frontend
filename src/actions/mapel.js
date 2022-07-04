@@ -8,6 +8,7 @@ export const addMapel = (formData) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
+
   try {
     const res = await axios.post("/api/create/mapel", formData, config);
     dispatch({

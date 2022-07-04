@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { addMapel } from "../../../actions/mapel";
 
 const TambahMapel = ({ addMapel }) => {
@@ -8,12 +9,15 @@ const TambahMapel = ({ addMapel }) => {
     name: "",
   });
 
+  const navigate = useNavigate();
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
     addMapel(formData);
+    navigate("/mapel");
   };
 
   return (

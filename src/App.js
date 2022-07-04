@@ -20,6 +20,8 @@ import BuatKelas from "./components/page/ruang/BuatKelas";
 import BasicAlert from "./components/layouts/BasicAlert";
 import Mapel from "./components/page/mapel";
 import TambahMapel from "./components/page/mapel/TambahMapel";
+import Jadwal from "./components/page/jadwal";
+import TambahJadwal from "./components/page/jadwal/TambahJadwal";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,6 +54,14 @@ const App = () => {
             <Route
               path="/mapel/tambah"
               element={<PrivateRoute component={TambahMapel} />}
+            />
+            <Route
+              path="/jadwal"
+              element={<PrivateRoute component={Jadwal} />}
+            />
+            <Route
+              path="/jadwal/tambah"
+              element={<PrivateRoute component={TambahJadwal} />}
             />
           </Routes>
         </Fragment>

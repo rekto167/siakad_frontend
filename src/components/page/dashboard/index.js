@@ -37,7 +37,10 @@ const Dashboard = () => {
           <div className="p-5">
             <h5 className="text-center font-semibold text-lg">Kelas</h5>
             <div className="flex flex-row items-center justify-around mt-3">
-              <div className="flex flex-col items-center hover:text-cyan-400">
+              <Link
+                to="/jadwal"
+                className="flex flex-col items-center hover:text-cyan-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -51,7 +54,7 @@ const Dashboard = () => {
                   />
                 </svg>
                 <h6>Jadwal</h6>
-              </div>
+              </Link>
               <Link
                 to="/mapel"
                 className="flex flex-col items-center hover:text-cyan-400"
