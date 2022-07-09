@@ -11,6 +11,7 @@ const TambahJadwal = () => {
   const [users, setUsers] = useState();
   const [kelas, setKelas] = useState();
   const [mapels, setMapels] = useState();
+  const [days, setDays] = useState();
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,10 +31,16 @@ const TambahJadwal = () => {
     setMapels(res.data.data);
   };
 
+  const getDays = async () => {
+    const res = await axios.get("/api/list/days");
+    setDays(res.data.data);
+  };
+
   useEffect(() => {
     getusers();
     getKelas();
     getMapel();
+    getDays();
   }, []);
 
   // useEffect(() => {
@@ -64,8 +71,12 @@ const TambahJadwal = () => {
             id="guru"
             name="guru"
             label="Guru"
+            value={0}
             onChange={(e) => handleChange(e)}
           >
+            <MenuItem value="0">
+              <em>None</em>
+            </MenuItem>
             {users?.map((e) => (
               <MenuItem value={e.id}>{e.name}</MenuItem>
             ))}
@@ -77,10 +88,14 @@ const TambahJadwal = () => {
             <Select
               labelId="kelas"
               id="kelas"
+              value={0}
               name="kelas"
               label="Kelas"
               onChange={(e) => handleChange(e)}
             >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
               {kelas?.map((e) => (
                 <MenuItem value={e.id}>{e.name}</MenuItem>
               ))}
@@ -93,11 +108,35 @@ const TambahJadwal = () => {
             <Select
               labelId="mapel"
               id="mapel"
+              value={0}
               name="mapel"
               label="Mata Pelajaran"
               onChange={(e) => handleChange(e)}
             >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
               {mapels?.map((e) => (
+                <MenuItem value={e.id}>{e.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="mt-2">
+          <FormControl fullWidth classes="mt-2">
+            <InputLabel id="days">Hari</InputLabel>
+            <Select
+              labelId="days"
+              id="days"
+              value={0}
+              name="days"
+              label="Hari"
+              onChange={(e) => handleChange(e)}
+            >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
+              {days?.map((e) => (
                 <MenuItem value={e.id}>{e.name}</MenuItem>
               ))}
             </Select>
