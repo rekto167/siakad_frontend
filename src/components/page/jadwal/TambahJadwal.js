@@ -2,16 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem, Box } from "@mui/material";
 import axios from "axios";
+import TimePicker from "react-time-picker";
 
 const TambahJadwal = () => {
   const [formData, setFormData] = useState({
     guru: "",
     kelas: "",
+    mapel: "",
+    hari: "",
+    waktu_awal: "",
+    waktu_akhir: "",
   });
   const [users, setUsers] = useState();
   const [kelas, setKelas] = useState();
   const [mapels, setMapels] = useState();
   const [days, setDays] = useState();
+  const [time, setTime] = useState("10:00");
+  const [time2, setTime2] = useState("10:00");
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,6 +50,11 @@ const TambahJadwal = () => {
     getDays();
   }, []);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   // useEffect(() => {
   // }, [formData]);
 
@@ -63,86 +75,78 @@ const TambahJadwal = () => {
         Back
       </Link>
       <h2 className="text-center font-semibold">Tambah Jadwal Pelajaran</h2>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="guru">Guru</InputLabel>
-          <Select
-            labelId="guru"
-            id="guru"
+      <form>
+        <div className="mt-3 flex flex-col">
+          <label htmlFor="guru">Guru</label>
+          <select
             name="guru"
-            label="Guru"
-            value={0}
+            id="guru"
+            className="p-2 rounded bg-white border focus:border-cyan-300"
             onChange={(e) => handleChange(e)}
           >
-            <MenuItem value="0">
-              <em>None</em>
-            </MenuItem>
+            <option value="0">Pilih guru</option>
             {users?.map((e) => (
-              <MenuItem value={e.id}>{e.name}</MenuItem>
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
             ))}
-          </Select>
-        </FormControl>
-        <div className="mt-2">
-          <FormControl fullWidth classes="mt-2">
-            <InputLabel id="kelas">Kelas</InputLabel>
-            <Select
-              labelId="kelas"
-              id="kelas"
-              value={0}
-              name="kelas"
-              label="Kelas"
-              onChange={(e) => handleChange(e)}
-            >
-              <MenuItem value="0">
-                <em>None</em>
-              </MenuItem>
-              {kelas?.map((e) => (
-                <MenuItem value={e.id}>{e.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          </select>
         </div>
-        <div className="mt-2">
-          <FormControl fullWidth classes="mt-2">
-            <InputLabel id="mapel">Mata Pelajaran</InputLabel>
-            <Select
-              labelId="mapel"
-              id="mapel"
-              value={0}
-              name="mapel"
-              label="Mata Pelajaran"
-              onChange={(e) => handleChange(e)}
-            >
-              <MenuItem value="0">
-                <em>None</em>
-              </MenuItem>
-              {mapels?.map((e) => (
-                <MenuItem value={e.id}>{e.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <div className="mt-3 flex flex-col">
+          <label htmlFor="mapel">Mata Pelajaran</label>
+          <select
+            name="mapel"
+            id="mapel"
+            className="p-2 rounded bg-white border focus:border-cyan-300"
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="0">Pilih mata pelajaran</option>
+            {mapels?.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className="mt-2">
-          <FormControl fullWidth classes="mt-2">
-            <InputLabel id="days">Hari</InputLabel>
-            <Select
-              labelId="days"
-              id="days"
-              value={0}
-              name="days"
-              label="Hari"
-              onChange={(e) => handleChange(e)}
-            >
-              <MenuItem value="0">
-                <em>None</em>
-              </MenuItem>
-              {days?.map((e) => (
-                <MenuItem value={e.id}>{e.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <div className="mt-3 flex flex-col">
+          <label htmlFor="kelas">Kelas</label>
+          <select
+            name="kelas"
+            id="kelas"
+            className="p-2 rounded bg-white border focus:border-cyan-300"
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="0">Pilih kelas</option>
+            {kelas?.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
+            ))}
+          </select>
         </div>
-      </Box>
+        <div className="mt-3 flex flex-col">
+          <label htmlFor="hari">Hari</label>
+          <select
+            name="hari"
+            id="hari"
+            className="p-2 rounded bg-white border focus:border-cyan-300"
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="0">Pilih hari</option>
+            {days?.map((e) => (
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          className="bg-cyan-400 p-2 text-white mt-5 rounded"
+          onClick={(e) => onSubmit(e)}
+        >
+          Tambah
+        </button>
+      </form>
     </div>
   );
 };
