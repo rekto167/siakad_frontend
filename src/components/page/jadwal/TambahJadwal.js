@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem, Box } from "@mui/material";
 import axios from "axios";
-import TimePicker from "react-time-picker";
+// import TimePicker from "react-time-picker";
+import TextField from "@mui/material/TextField";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import MuiTimePicker from "../../layouts/MuiTimePicker";
 
 const TambahJadwal = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +22,7 @@ const TambahJadwal = () => {
   const [kelas, setKelas] = useState();
   const [mapels, setMapels] = useState();
   const [days, setDays] = useState();
-  const [time, setTime] = useState("10:00");
+  const [time, setTime] = useState("");
   const [time2, setTime2] = useState("10:00");
 
   const handleChange = (e) =>
@@ -139,6 +144,18 @@ const TambahJadwal = () => {
               </option>
             ))}
           </select>
+        </div>
+        <div className="mt-3 flex flex-row justify-between">
+          <MuiTimePicker
+            titleLabel="Jam Mulai"
+            state={time}
+            setState={setTime}
+          />
+          <MuiTimePicker
+            titleLabel="Jam Berakhir"
+            state={time2}
+            setState={setTime2}
+          />
         </div>
         <button
           className="bg-cyan-400 p-2 text-white mt-5 rounded"
