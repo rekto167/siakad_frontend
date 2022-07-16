@@ -15,3 +15,6 @@ export const CREATE_CLASS_FAIL = "CREATE_CLASS_FAIL";
 // mapel
 export const ADD_MAPEL = "ADD_MAPEL";
 export const ADD_MAPEL_FAIL = "ADD_MAPEL_FAIL";
+// jadwal
+export const TAMBAH_JADWAL = "TAMBAH_JADWAL";
+export const TAMBAH_JADWAL_GAGAL = "TAMBAH_JADWAL_GAGAL";

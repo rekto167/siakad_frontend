@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem, Box } from "@mui/material";
 import axios from "axios";
 // import TimePicker from "react-time-picker";
@@ -7,9 +7,11 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import MuiTimePicker from "../../layouts/MuiTimePicker";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { tambahJadwal } from "../../../actions/jadwal";
 
-const TambahJadwal = () => {
+const TambahJadwal = ({ tambahJadwal }) => {
   const [formData, setFormData] = useState({
     guru: "",
     kelas: "",
@@ -24,6 +26,8 @@ const TambahJadwal = () => {
   const [days, setDays] = useState();
   const [time, setTime] = useState("");
   const [time2, setTime2] = useState("10:00");
+
+  const { guru, classroom, mapel, hari, waktu_awal, waktu_akhir } = formData;
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,6 +62,7 @@ const TambahJadwal = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    <Navigate to="/" />;
   };
 
   // useEffect(() => {
@@ -146,16 +151,34 @@ const TambahJadwal = () => {
           </select>
         </div>
         <div className="mt-3 flex flex-row justify-between">
-          <MuiTimePicker
-            titleLabel="Jam Mulai"
-            state={time}
-            setState={setTime}
-          />
-          <MuiTimePicker
-            titleLabel="Jam Berakhir"
-            state={time2}
-            setState={setTime2}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <TimePicker
+              label="Jam Mulai"
+              value={formData.waktu_awal}
+              onChange={(newValue) => {
+                setFormData({
+                  ...formData,
+                  waktu_awal: `${newValue.getHours()}:${newValue.getMinutes()}`,
+                });
+              }}
+              renderInput={(params) => <TextField {...params} />}
+              ampm={false}
+            />
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <TimePicker
+              label="Jam Berakhir"
+              value={formData.waktu_akhir}
+              onChange={(newValue) => {
+                setFormData({
+                  ...formData,
+                  waktu_akhir: `${newValue.getHours()}:${newValue.getMinutes()}`,
+                });
+              }}
+              renderInput={(params) => <TextField {...params} />}
+              ampm={false}
+            />
+          </LocalizationProvider>
         </div>
         <button
           className="bg-cyan-400 p-2 text-white mt-5 rounded"
@@ -168,4 +191,8 @@ const TambahJadwal = () => {
   );
 };
 
-export default TambahJadwal;
+TambahJadwal.propTypes = {
+  tambahJadwal: PropTypes.func.isRequired,
+};
+
+export default connect(null, { tambahJadwal })(TambahJadwal);
