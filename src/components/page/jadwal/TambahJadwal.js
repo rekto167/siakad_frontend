@@ -24,8 +24,8 @@ const TambahJadwal = ({ tambahJadwal }) => {
   const [kelas, setKelas] = useState();
   const [mapels, setMapels] = useState();
   const [days, setDays] = useState();
-  const [time, setTime] = useState("");
-  const [time2, setTime2] = useState("10:00");
+  const [time, setTime] = useState();
+  const [time2, setTime2] = useState();
 
   const { guru, classroom, mapel, hari, waktu_awal, waktu_akhir } = formData;
 
@@ -61,8 +61,12 @@ const TambahJadwal = ({ tambahJadwal }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    <Navigate to="/" />;
+    tambahJadwal(formData);
+    pindah();
+  };
+
+  const pindah = () => {
+    return <Navigate to="/jadwal" />;
   };
 
   // useEffect(() => {
@@ -154,8 +158,9 @@ const TambahJadwal = ({ tambahJadwal }) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <TimePicker
               label="Jam Mulai"
-              value={formData.waktu_awal}
+              value={time}
               onChange={(newValue) => {
+                setTime(newValue);
                 setFormData({
                   ...formData,
                   waktu_awal: `${newValue.getHours()}:${newValue.getMinutes()}`,
@@ -168,8 +173,9 @@ const TambahJadwal = ({ tambahJadwal }) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <TimePicker
               label="Jam Berakhir"
-              value={formData.waktu_akhir}
+              value={time2}
               onChange={(newValue) => {
+                setTime2(newValue);
                 setFormData({
                   ...formData,
                   waktu_akhir: `${newValue.getHours()}:${newValue.getMinutes()}`,

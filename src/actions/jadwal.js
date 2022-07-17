@@ -15,11 +15,13 @@ export const tambahJadwal = (formData) => async (dispatch) => {
       type: TAMBAH_JADWAL,
       payload: res.data,
     });
-    console.log(res.data);
+    dispatch(setAlert(`${res.data.meta.message}`, res.data.meta.status));
   } catch (err) {
+    console.log(err);
     dispatch({
       type: TAMBAH_JADWAL_GAGAL,
       payload: err,
     });
+    dispatch(setAlert("Gagal menambahkan jadwal", "error"));
   }
 };
