@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormControl, InputLabel, Select, MenuItem, Box } from "@mui/material";
 import axios from "axios";
 // import TimePicker from "react-time-picker";
@@ -59,18 +59,14 @@ const TambahJadwal = ({ tambahJadwal }) => {
     getDays();
   }, []);
 
+  let navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     tambahJadwal(formData);
-    pindah();
+    navigate("/jadwal", { replace: true });
   };
-
-  const pindah = () => {
-    return <Navigate to="/jadwal" />;
-  };
-
-  // useEffect(() => {
-  // }, [formData]);
 
   return (
     <div className="container w-1/2 m-auto border rounded p-2 mt-5">
