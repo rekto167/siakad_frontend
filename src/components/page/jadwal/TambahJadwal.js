@@ -71,7 +71,7 @@ const TambahJadwal = ({ tambahJadwal }) => {
   return (
     <div className="container w-1/2 m-auto border rounded p-2 mt-5">
       <Link
-        to="/jadawal"
+        to="/jadwal"
         className="flex bg-slate-400 text-center py-1 px-1 text-white hover:bg-slate-600 rounded w-fit"
       >
         <svg
