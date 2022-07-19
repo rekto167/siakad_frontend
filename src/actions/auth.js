@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import {
   REGISTER_SUCCESS,
@@ -11,6 +12,7 @@ import {
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -44,8 +46,10 @@ export const login = (formData) => async (dispatch) => {
     });
     dispatch(setAlert(res.data.meta.message, res.data.meta.status));
     dispatch(loadUser());
+    console.log(res.data);
   } catch (err) {
-    dispatch({ type: LOGIN_FAIL });
+    dispatch({ type: LOGIN_FAIL, payload: err.response });
+    dispatch(setAlert(err.response.statusText, "error"));
   }
 };
 
