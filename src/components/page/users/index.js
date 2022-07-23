@@ -10,6 +10,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Switch,
 } from "@mui/material";
 
 const Users = () => {
@@ -64,10 +65,15 @@ const Users = () => {
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.username}</TableCell>
                   <TableCell>{row.email}</TableCell>
-                  <TableCell>{row.status ? "Aktif" : "Tidak aktif"}</TableCell>
+                  <TableCell>
+                    <Switch onChange={(e) => console.log(row.id)} />
+                  </TableCell>
                   <TableCell>
                     <div className="flex flex-row justify-between">
-                      <div className="hover:text-cyan-400 hover:cursor-pointer">
+                      <Link
+                        to={`/users/detail/${row.id}`}
+                        className="hover:text-cyan-400 hover:cursor-pointer"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-4 w-4"
@@ -87,7 +93,7 @@ const Users = () => {
                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                           />
                         </svg>
-                      </div>
+                      </Link>
                       <div className="hover:text-cyan-400 hover:cursor-pointer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
