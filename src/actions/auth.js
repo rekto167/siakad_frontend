@@ -8,7 +8,8 @@ import {
   AUTH_ERROR,
   USER_LOADED,
   LOGOUT,
-  SET_ALERT,
+  ALL_USER,
+  CLEAR,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
@@ -44,12 +45,14 @@ export const login = (formData) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data.data,
     });
-    dispatch(setAlert(res.data.meta.message, res.data.meta.status));
+    // dispatch(setAlert(res.data.meta.message, res.data.meta.status));
     dispatch(loadUser());
-    console.log(res.data);
   } catch (err) {
     dispatch({ type: LOGIN_FAIL, payload: err.response });
     dispatch(setAlert(err.response.statusText, "error"));
+    // if (err.response.status == 403) {
+    //   return (window.location = "http://localhost:3000/user-deactive");
+    // }
   }
 };
 
@@ -76,4 +79,10 @@ export const register = (formData) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
+};
+
+export const getAllUser = () => async (dispatch) => {
+  try {
+    // const res
+  } catch (err) {}
 };

@@ -23,6 +23,7 @@ import TambahMapel from "./components/page/mapel/TambahMapel";
 import Jadwal from "./components/page/jadwal";
 import TambahJadwal from "./components/page/jadwal/TambahJadwal";
 import UserDeactive from "./components/page/error/UserDeactive";
+import Users from "./components/page/users";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -43,6 +44,7 @@ const App = () => {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="user-deactive" element={<UserDeactive />} />
             <Route path="/" element={<PrivateRoute component={Home} />} />
+            <Route path="users" element={<PrivateRoute component={Users} />} />
             <Route
               path="/dashboard"
               element={<PrivateRoute component={Dashboard} />}

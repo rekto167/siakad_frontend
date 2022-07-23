@@ -6,6 +6,7 @@ import {
   AUTH_ERROR,
   USER_LOADED,
   LOGOUT,
+  CLEAR
 } from "../actions/types";
 
 const initialState = {
@@ -47,15 +48,6 @@ export default function (state = initialState, action) {
         error: payload,
       };
     case AUTH_ERROR:
-      localStorage.removeItem("token");
-      return {
-        ...state,
-        token: null,
-        isAuthenticated: false,
-        loading: false,
-        user: null,
-        error: payload,
-      };
     case LOGOUT:
       localStorage.removeItem("token");
       return {
@@ -64,6 +56,16 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         loading: false,
         user: null,
+      };
+    case CLEAR:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+        error: null,
       };
     default:
       return state;
