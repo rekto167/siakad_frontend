@@ -9,6 +9,7 @@ import {
   USER_LOADED,
   LOGOUT,
   ALL_USER,
+  GET_USER,
   CLEAR,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
@@ -85,4 +86,21 @@ export const getAllUser = () => async (dispatch) => {
   try {
     // const res
   } catch (err) {}
+};
+
+export const getuser = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.get(`/api/user/${id}`, config);
+    dispatch({
+      type: GET_USER,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };

@@ -7,7 +7,9 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const USER_LOADED = "USER_LOADED";
 export const LOGOUT = "LOGOUT";
 export const ALL_USER = "ALL_USER";
-export const CLEAR = 'CLEAR'
+export const CLEAR = "CLEAR";
+export const GET_USER = "GET_USER";
+export const USER_ERROR = "USER_ERROR";
 // alert
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";

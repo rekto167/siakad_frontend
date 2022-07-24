@@ -25,6 +25,7 @@ import TambahJadwal from "./components/page/jadwal/TambahJadwal";
 import UserDeactive from "./components/page/error/UserDeactive";
 import Users from "./components/page/users";
 import GetUser from "./components/page/users/GetUser";
+import EditUser from "./components/page/users/EditUser";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,6 +50,10 @@ const App = () => {
             <Route
               path="users/detail/:userId"
               element={<PrivateRoute component={GetUser} />}
+            />
+            <Route
+              path="users/edit/:userId"
+              element={<PrivateRoute component={EditUser} />}
             />
             <Route
               path="/dashboard"
